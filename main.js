@@ -41,6 +41,7 @@ function fetchData(vuosi = 0, artikkeli = "", kommentti = "") {
     });
 } 
 fetchData();
+<<<<<<< HEAD
 function articleSearch(clicked_id) {
     fetchData(clicked_id);
 }
@@ -65,3 +66,6 @@ function vuosiRender(obj) {
     str += `</ul>`;
     document.getElementById("aikajanaLista").innerHTML = str;
 }
+=======
+
+>>>>>>> refs/remotes/origin/main
