@@ -1,10 +1,16 @@
-{
+* {
   box-sizing: border-box;
-  overflow: hidden;
+  overflow-x: hidden;
+
 
 }
 
 /* Set a background color */
+
+html {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
 
 html, body {
   background-color: #f2f2f2;
@@ -17,7 +23,12 @@ body {
 
   max-width: 960px;
   background-color: #ffffff;
+  overflow-y: visible;
 
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 h1 {
@@ -32,6 +43,11 @@ h2 {
   font-weight: bold;
   color: black;
   letter-spacing: -.01em;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+h3 {
   text-align: center;
 }
 
@@ -48,7 +64,7 @@ li {
 .aikajana-main-section-app {
     width: 100%;
     padding-bottom: 0px;
-    background-color: rgba(237, 161, 164, 0.3);
+    background-color: rgba(237, 161, 164, 0.2);
     padding-top: 40px;
 
 }
@@ -58,7 +74,7 @@ padding-top: 10px;
 padding-bottom: 10px;
 width: 100%;
 background-color: rgba(224, 88, 92);
-height: 270px;
+
 
 }
 
@@ -124,6 +140,8 @@ height: 270px;
   max-width: 750px;
   justify-content: center;
   margin: 0;
+  margin-top: 5px;
+  margin-bottom: 10px;
 
 }
 
@@ -146,6 +164,42 @@ height: 270px;
   border: none;
   border-bottom: 2px solid red;
   resize: none;
+}
+
+.kommentitwrap {
+
+  display: flex;
+  flex-direction: column;
+  margin-top: 35px;
+  padding-top: 15px;
+  background-color: rgba(237, 161, 164, 0.2);
+  width: 100%;
+
+  min-height: 370px;
+}
+
+.kommentit {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  text-align: left;
+
+  padding-top: 5px;
+  padding-bottom: 20px;
+
+
+}
+
+.kommentit #listaalku {
+  width: 500px;
+  /*border-top: 2px solid red; */
+  padding-bottom: 15px;
+  font-size: 14px;
+}
+
+.kommentit li {
+  border-bottom: 1px solid #797b85;
+  padding: 16px;
 }
 
 .napit {

@@ -30,6 +30,7 @@ function fetchData(vuosi = 0, artikkeli = "", kommentti = "") {
                     teksti = data.artikkelit[i]["articleContent"];
                     document.getElementById("otsikko").innerHTML = data.artikkelit[i].articleName;
                     document.getElementById("alkusanat").innerHTML = '';
+                    document.getElementById("komotsikko").innerHTML = 'Kommentit';
                 }
             }
             // render article content and comment textbox and submit button
@@ -46,11 +47,12 @@ function fetchData(vuosi = 0, artikkeli = "", kommentti = "") {
                 inputValue = JSON.parse(localStorage.getItem(`added-comment`));
                 for (let i = 0; i < inputValue.length; i++) {
                     if (inputValue[i]["articleDate"] == y) {
-                        rendr += `<li>${inputValue[i]["comment"]}</li>`;
+                        rendr += `<li>${inputValue[i]["comment"]} - ${calculateTime(inputValue[i]["commentDate"])}</li>`;
                     }
                 }
                 rendr += `<ul>`;
                 document.querySelector(".kommentit").innerHTML = rendr;
+                console.log(calculateTime(inputValue[0]["commentDate"]));
             }
         }
     });
@@ -59,7 +61,7 @@ fetchData();
 function articleSearch(clicked_id) {
     fetchData(clicked_id);
 }
-function articleDisplay(clicked_article){
+function articleDisplay(clicked_article) {
     fetchData(null, clicked_article);
 }
 // take the comment and pass it to function that sends it to local storage
@@ -96,7 +98,7 @@ function renderYear(obj) {
     document.getElementById("aikajanaLista").innerHTML = str;
 }
 function parseDate(x) {
-    let y = new Date(JSON.parse(`"`+x+`"`));
+    let y = new Date(x);
     return y;
 }
 
@@ -107,5 +109,19 @@ class Comment {
         this.articleName = articleName;
         this.comment = comment;
         this.commentDate = commentDate;
+    }
+}
+// add time to comments
+function calculateTime(dateComment) {
+    let commentDate = new Date(dateComment);
+    let sub = (new Date() - commentDate) / (1000 * 60 * 60);
+    if (sub < 0.6) {
+        return (`${Math.floor(sub * 100)} minutes ago`);
+    } else if (sub > 0.6 && sub < 24 * 0.6) {
+        return (`${Math.floor(sub / 0.6)} hours ago`);
+    } else if (sub > 24 * 0.6 && sub < 24 * 7 * 0.6) {
+        return (`${Math.floor(sub / 24 / 0.6)} days ago`);
+    } else {
+        return commentDate;
     }
 }
